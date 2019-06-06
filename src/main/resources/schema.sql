@@ -17,7 +17,7 @@ CREATE TABLE Toppings (
 CREATE TABLE deals (
     code INT8 PRIMARY KEY,
     description VARCHAR(128),
-    percent DECIMAL(2, 2),
+    percent DECIMAL(4, 2),
     dealstartdate DATE,
     dealenddate DATE,
     lastchangets TIMESTAMP
