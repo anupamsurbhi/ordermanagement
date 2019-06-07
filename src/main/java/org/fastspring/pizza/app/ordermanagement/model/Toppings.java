@@ -22,6 +22,7 @@ public class Toppings {
     private String description;
     private Double price ;
     private String active;
+    private Integer inventory ;	
     private Timestamp lastchangets;
 	
 

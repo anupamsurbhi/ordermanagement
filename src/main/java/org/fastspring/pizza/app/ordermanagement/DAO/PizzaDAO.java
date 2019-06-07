@@ -45,6 +45,7 @@ public class PizzaDAO {
 		return pizzas;
 	}
 	
+	
 	public Pizza getPizzaPrice(Integer pizzaCode)
 	{
 		String query = env.getProperty("GET_PIZZA_ID");
@@ -61,5 +62,46 @@ public class PizzaDAO {
 		}
 
 		return pizza;
+	}
+	
+	
+	public Integer maxPizzaCode()
+	{
+		String query = env.getProperty("GET_PIZZA_MAX");
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		
+		
+		try {
+			pizza = pizzaDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Pizza.class)).get(0);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed");
+
+		}
+
+		return pizza.getCode();
+	}
+	
+	public Pizza addPizza(Pizza inPizza)
+	{
+		String query = env.getProperty("ADD_PIZZA");
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		paramMap.addValue("code", inPizza.getCode());
+		paramMap.addValue("desc", inPizza.getDescription());
+		paramMap.addValue("price", inPizza.getPrice());
+		paramMap.addValue("inv", inPizza.getInventory());
+
+
+		try {
+			pizzaDAO.update(query, paramMap);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed" + e);
+
+		}
+
+		return inPizza;
 	}
 }

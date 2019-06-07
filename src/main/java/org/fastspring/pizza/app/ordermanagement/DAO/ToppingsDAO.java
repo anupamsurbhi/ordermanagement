@@ -14,24 +14,23 @@ import org.springframework.stereotype.Repository;
 @Repository
 @PropertySource("${fastspring.sql.path}")
 public class ToppingsDAO {
-	
+
 	@Autowired
 	List<Toppings> toppings;
-	
+
 	@Autowired
 	Toppings topping;
-	
+
 	@Autowired
 	private NamedParameterJdbcTemplate toppingDAO;
 
 	@Autowired
 	private Environment env;
-	
-	public List<Toppings> getToppings()
-	{
+
+	public List<Toppings> getToppings() {
 		String query = env.getProperty("GET_TOPPINGS");
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
-		
+
 		try {
 			toppings = toppingDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Toppings.class));
 			System.out.println(" pass");
@@ -43,13 +42,12 @@ public class ToppingsDAO {
 
 		return toppings;
 	}
-	
-	public Toppings getTopping(Integer toppingId)
-	{
+
+	public Toppings getTopping(Integer toppingId) {
 		String query = env.getProperty("GET_TOPPINGS_ID");
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("code", toppingId);
-		
+
 		try {
 			toppings = toppingDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Toppings.class));
 			topping = toppings.get(0);
@@ -61,6 +59,43 @@ public class ToppingsDAO {
 		}
 
 		return topping;
+	}
+
+	public Integer maxToppingCode() {
+		String query = env.getProperty("GET_TOPPING_MAX");
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+
+		try {
+			topping = toppingDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Toppings.class)).get(0);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed");
+
+		}
+
+		return topping.getCode();
+	}
+
+	public Toppings addTopping(Toppings inTopping) {
+		String query = env.getProperty("ADD_PIZZA");
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		paramMap.addValue("code", inTopping.getCode());
+		paramMap.addValue("desc", inTopping.getDescription());
+		paramMap.addValue("price", inTopping.getPrice());
+		paramMap.addValue("active", "Y");
+		paramMap.addValue("inv", inTopping.getInventory());
+
+		try {
+			toppingDAO.update(query, paramMap);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed" + e);
+
+		}
+
+		return inTopping;
 	}
 
 }

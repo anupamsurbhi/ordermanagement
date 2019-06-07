@@ -21,6 +21,7 @@ public class Pizza {
     private Integer code ;	
     private String description;
     private Double price ;
+    private Integer inventory ;	
     private Timestamp lastchangets;
 
 
