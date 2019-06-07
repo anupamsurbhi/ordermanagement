@@ -3,6 +3,7 @@ package org.fastspring.pizza.app.ordermanagement.DAO;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -48,7 +49,24 @@ public class OrdersDAO {
 		return orders;
 	}
 	
-	public Orders placeOrder(Orders inOrder)
+	public Integer getNextOrderNum()
+	{
+		String query = env.getProperty("GET_ORDER_MAX");
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		List<String> maxOrder = new ArrayList<String>();
+		try {
+			order = ordersDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Orders.class)).get(0);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed");
+
+		}
+
+		return order.getOrderNumber();
+	}
+	
+	public Orders insertOrder(Orders inOrder)
 	{
 		String query = env.getProperty("POST_ORDER");
 		

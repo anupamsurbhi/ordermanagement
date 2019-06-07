@@ -43,5 +43,24 @@ public class ToppingsDAO {
 
 		return toppings;
 	}
+	
+	public Toppings getTopping(Integer toppingId)
+	{
+		String query = env.getProperty("GET_TOPPINGS_ID");
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		paramMap.addValue("code", toppingId);
+		
+		try {
+			toppings = toppingDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Toppings.class));
+			topping = toppings.get(0);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed");
+
+		}
+
+		return topping;
+	}
 
 }

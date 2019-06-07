@@ -43,5 +43,24 @@ public class DealsDAO {
 
 		return deals;
 	}
+	
+	public Deals getDealsByCode(Integer dealCode)
+	{
+		String query = env.getProperty("GET_DEALS_ID");
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		paramMap.addValue("code", dealCode);
+
+		
+		try {
+			deal = dealDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Deals.class)).get(0);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed");
+
+		}
+
+		return deal;
+	}
 
 }

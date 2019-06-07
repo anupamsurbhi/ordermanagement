@@ -32,6 +32,7 @@ public class PizzaDAO {
 		String query = env.getProperty("GET_PIZZA");
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		
+		
 		try {
 			pizzas = pizzaDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Pizza.class));
 			System.out.println(" pass");
@@ -42,5 +43,23 @@ public class PizzaDAO {
 		}
 
 		return pizzas;
+	}
+	
+	public Pizza getPizzaPrice(Integer pizzaCode)
+	{
+		String query = env.getProperty("GET_PIZZA_ID");
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		paramMap.addValue("code", pizzaCode);
+		try {
+			pizzas =  pizzaDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Pizza.class));
+			pizza = pizzas.get(0);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed");
+
+		}
+
+		return pizza;
 	}
 }

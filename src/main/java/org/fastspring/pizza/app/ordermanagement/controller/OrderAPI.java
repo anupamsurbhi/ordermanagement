@@ -2,9 +2,13 @@ package org.fastspring.pizza.app.ordermanagement.controller;
 
 import java.io.InvalidClassException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.fastspring.pizza.app.ordermanagement.model.Orders;
+import org.fastspring.pizza.app.ordermanagement.request.OrderRequest;
+import org.fastspring.pizza.app.ordermanagement.request.RequestPizza;
+import org.fastspring.pizza.app.ordermanagement.request.RequestToppings;
 import org.fastspring.pizza.app.ordermanagement.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -43,7 +47,8 @@ public class OrderAPI {
 						 MediaType.APPLICATION_XML_VALUE }, 
 			produces = { MediaType.APPLICATION_JSON_VALUE, 
 					     MediaType.APPLICATION_XML_VALUE })
-	public Orders placeOrder(@RequestBody Orders order)  {
+	public Orders placeOrder(@RequestBody OrderRequest order)  {
+
 		return ordersService.placeOrder(order);
 	
 
