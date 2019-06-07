@@ -57,6 +57,7 @@ public class DealsDAO {
 
 		} catch (Exception e) {
 			deal.setPercent(0.00);
+			deal.setDescription("No Deal Added");
 			System.out.println(" Failed");
 
 		}

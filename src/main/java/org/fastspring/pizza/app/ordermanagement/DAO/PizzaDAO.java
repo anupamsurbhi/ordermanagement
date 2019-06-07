@@ -64,6 +64,27 @@ public class PizzaDAO {
 		return pizza;
 	}
 	
+	public Pizza preparePizza(Integer pizzaCode)
+	{
+		String query = env.getProperty("GET_PIZZA_ID");
+		String updateQuery = env.getProperty("UPDATE_PIZZA_INV");
+
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		paramMap.addValue("code", pizzaCode);
+		try {
+			pizzas =  pizzaDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Pizza.class));
+			pizza = pizzas.get(0);
+			pizzaDAO.update(updateQuery, paramMap);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed");
+
+		}
+
+		return pizza;
+	}
+	
 	
 	public Integer maxPizzaCode()
 	{

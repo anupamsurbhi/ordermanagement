@@ -1,0 +1,39 @@
+Business Problem Statement:
+Design and implement a basic pizza ordering app
+
+    - You should be able to order and customize a regular cheese pizza
+    - Each customization will affect the price
+    - Store/Site manager should be able to control the inventory
+    - Store/Site manager can add new toppings
+
+Note: There could be multiple users trying to order pizzas at any given time against the limited inventory. Please make sure such cases are covered by your implementation.
+
+Note: If you solve the problem in a language other than Java; any language specific idiosyncrasies should be well documented in either the comments or the README.
+
+Keep in mind how your design could be extended in the following ways:
+
+    Select different sizes and varieties of pizza base/cheese/sauce.
+    Store/Site manager should be able to create deals/promotions in the app.
+    Creating a REST API to place order and manage inventory/deals
+
+Note: This is an open ended exercise so, feel free to make assumptions when creating a solution.
+You can explain details about your solution approach and assumptions during the onsite interview/during evaluation.
+
+Required deliverables:
+
+    - A document explaining the design principles and algorithm
+    - Working production ready code and corresponding unit test (at least the main functionality) for use cases packaged as a maven project (or some other commandline runnable build system).
+    - A README file explaining the usage of pizza ordering app:
+        How to operate it
+        What is the expected output?
+
+How to deliver the code to us?
+Option 1 - github:
+    Check your code into a public GitHub repo 
+    Create a GitHub release when you submit it to us (we specifically want to see what you had accomplished in the elapsed time).
+    Email back with the GitHub URL.
+
+Option 2 - zipped source with instructions to run:
+    Remove any binaries from the zipped archive
+    Add instructions/readme that clearly indicates the build and run commands
+    Make sure the project runs on mac/linux environment

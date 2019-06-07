@@ -60,6 +60,27 @@ public class ToppingsDAO {
 
 		return topping;
 	}
+	
+	public Toppings addToppingToPizza(Integer toppingId) {
+		String query = env.getProperty("GET_TOPPINGS_ID");
+		String updateQuery = env.getProperty("UPDATE_TOPPING_INV");
+
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		paramMap.addValue("code", toppingId);
+
+		try {
+			toppings = toppingDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Toppings.class));
+			topping = toppings.get(0);
+			toppingDAO.update(updateQuery, paramMap);
+			System.out.println(" pass");
+
+		} catch (Exception e) {
+			System.out.println(" Failed");
+
+		}
+
+		return topping;
+	}
 
 	public Integer maxToppingCode() {
 		String query = env.getProperty("GET_TOPPING_MAX");
