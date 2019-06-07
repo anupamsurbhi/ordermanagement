@@ -56,6 +56,7 @@ public class DealsDAO {
 			System.out.println(" pass");
 
 		} catch (Exception e) {
+			deal.setPercent(0.00);
 			System.out.println(" Failed");
 
 		}
