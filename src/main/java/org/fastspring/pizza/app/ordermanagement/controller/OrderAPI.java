@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/order")
 public class OrderAPI {
@@ -24,6 +26,7 @@ public class OrderAPI {
 	@Autowired
 	OrdersService ordersService;
 
+	@ApiOperation(value = "get all orders")
 	@RequestMapping(value = "/getallorders", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public List<Orders> getOrderStatus() throws InvalidClassException {
@@ -31,6 +34,7 @@ public class OrderAPI {
 
 	}
 
+	@ApiOperation(value = "place orders")
 	@RequestMapping(value = "/placeorder", method = RequestMethod.POST, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public OrderResponse placeOrder(@RequestBody OrderRequest order) {

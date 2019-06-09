@@ -60,7 +60,7 @@ public class OrdersDAO {
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		try {
 			order = ordersDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Orders.class)).get(0);
-			System.out.println(" pass");
+			order.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
 			order.setStatus(appConstants.fail);
@@ -93,7 +93,7 @@ public class OrdersDAO {
 		// ordersDAO.update(query, paramMap);
 		try {
 			int updRec = ordersDAO.update(query, paramMap);
-			System.out.println(" pass" + updRec);
+			inOrder.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
 			inOrder.setStatus(appConstants.fail);

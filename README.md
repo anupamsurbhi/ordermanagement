@@ -1,7 +1,6 @@
 # Pizza order management - Order placement API and Manage Inventory APIs
 
-####TroubleShooting - 
-This project requires Lombok , Please download lombok either for eclipse or intellj as per lombok website
+
 
 #### Web URL for H2 Database and Swagger UI End Points
 For H2 DataBase Console - http://localhost:8181/console
@@ -20,3 +19,5 @@ $ sudo gradle bootRun
 
 The above command will start the project in machine on port 8181 
 
+#### TroubleShooting - 
+This project requires Lombok , Please download lombok either for eclipse or intellj as per lombok website

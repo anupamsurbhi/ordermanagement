@@ -1,27 +1,21 @@
-package org.fastspring.pizza.app.ordermanagement.controller;
+package org.fastspring.pizza.app.ordermanagement.NormalTestFlow;
 
 
 
-import org.fastspring.pizza.app.ordermanagement.model.Deals;
-import org.fastspring.pizza.app.ordermanagement.model.Pizza;
-import org.fastspring.pizza.app.ordermanagement.model.Toppings;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ControllerTest.class)
-public class ControllerTest {
+@WebMvcTest(CommonTestCases.class)
+public class CommonTestCases {
 
    @Test
    public void testGetAllDeals() throws URISyntaxException
@@ -89,7 +83,7 @@ public class ControllerTest {
    }
    
    @Test
-   public void testOrder() throws URISyntaxException
+   public void testAllOrder() throws URISyntaxException
    {
        RestTemplate restTemplate = new RestTemplate();
         
