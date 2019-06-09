@@ -26,5 +26,6 @@ dependencies {
 	compile ("io.springfox:springfox-swagger-ui:2.5.0")
     compile ("io.springfox:springfox-swagger2:2.5.0")
     compile group: 'com.fasterxml.jackson.dataformat' , name: 'jackson-dataformat-xml' , version : '2.6.3'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
     
 }
