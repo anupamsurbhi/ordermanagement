@@ -1,19 +1,17 @@
 package org.fastspring.pizza.app.ordermanagement.controller;
 
 import java.io.InvalidClassException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.sql.Date;
 import java.util.List;
 
 import org.fastspring.pizza.app.ordermanagement.model.Deals;
-import org.fastspring.pizza.app.ordermanagement.model.Orders;
 import org.fastspring.pizza.app.ordermanagement.model.Pizza;
 import org.fastspring.pizza.app.ordermanagement.model.Toppings;
 import org.fastspring.pizza.app.ordermanagement.service.ManageService;
-import org.fastspring.pizza.app.ordermanagement.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +21,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@Api(description = "Managed Operations - Add topping, pizza /Update inventory")
+@Api("Managed Operations - Add topping, pizza /Update inventory")
 @RequestMapping("/manage")
 public class ManagerAPI {
 
@@ -39,12 +37,7 @@ public class ManagerAPI {
 	@Autowired
 	ManageService manageService;
 
-	@ApiOperation(value = "get all pizza")
-	@RequestMapping(value = "/getpizza", method = RequestMethod.GET, consumes = {
-			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Pizza> getPizza() {
-		return manageService.getPizza();
-	}
+
 
 	@ApiOperation(value = "add pizza")
 	@RequestMapping(value = "/addpizza", method = RequestMethod.PUT, consumes = {
@@ -58,13 +51,20 @@ public class ManagerAPI {
 
 		return manageService.addPizza(pizza);
 	}
-
-	@ApiOperation(value = "get all toppings")
-	@RequestMapping(value = "/gettoppings", method = RequestMethod.GET, consumes = {
+	
+	@ApiOperation(value = "update pizza inv")
+	@RequestMapping(value = "/updatepizzainv", method = RequestMethod.POST, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Toppings> getToppings() {
-		return manageService.getToppings();
+	public Pizza updatePizzaInv(@RequestParam Integer pizzacode,
+			@RequestParam Integer inventory) {
+
+		pizza.setInventory(inventory);
+		pizza.setCode(pizzacode);
+
+		return manageService.updatePizzaInv(pizza);
 	}
+
+
 
 	@ApiOperation(value = "add toppings")
 	@RequestMapping(value = "/addtoppings", method = RequestMethod.PUT, consumes = {
@@ -79,11 +79,31 @@ public class ManagerAPI {
 		return manageService.addTopping(topping);
 	}
 
-	@SuppressWarnings("deprecation")
-	@ApiOperation(value = "get all deals")
-	@RequestMapping(value = "/getdeals", method = RequestMethod.GET, consumes = {
+	@ApiOperation(value = "update toppings inventory")
+	@RequestMapping(value = "/updatetoppinginv", method = RequestMethod.POST, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Deals> getDeals() throws InvalidClassException {
-		return manageService.getDeals();
+	public Toppings updateToppingInv(@RequestParam Integer ToppingCode,
+			@RequestParam Integer inventory) {
+
+		topping.setInventory(inventory);
+		topping.setCode(ToppingCode);
+
+		return manageService.updateToppingInv(topping);
 	}
+	
+	@ApiOperation(value = "add deal")
+	@RequestMapping(value = "/adddeal", method = RequestMethod.PUT, consumes = {
+			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public Deals addDeal(@RequestParam String description, @RequestParam Double DealPercent,
+			 @RequestParam String StartDate , @RequestParam String EndDate) {
+
+		deal.setDescription(description);
+		deal.setDealstartdate(Date.valueOf(StartDate));
+		deal.setDealenddate(Date.valueOf(EndDate));
+
+		deal.setPercent(DealPercent);
+		
+		return manageService.addDeal(deal);
+	}
+
 }

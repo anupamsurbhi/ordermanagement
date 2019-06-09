@@ -7,12 +7,31 @@ CREATE TABLE pizza (
     lastchangets TIMESTAMP
 );
 
-insert into pizza(code,description,price,inventory,lastchangets) values (1001,'Cheese Pizza Large',5.25,100,CURRENT_TIMESTAMP);
-insert into pizza(code,description,price,inventory,lastchangets) values(1002,'Cheese Pizza Medium',4.25,150,CURRENT_TIMESTAMP);
-insert into pizza(code,description,price,inventory,lastchangets) values(1003,'Cheese Pizza Small',3.50,130,CURRENT_TIMESTAMP);
-insert into pizza(code,description,price,inventory,lastchangets) values(1004,'Thin Pizza Crust Large',8.99,180,CURRENT_TIMESTAMP);
-insert into pizza(code,description,price,inventory,lastchangets) values(1005,'Thin Pizza Crust Medium',7.99,40,CURRENT_TIMESTAMP);
-insert into pizza(code,description,price,inventory,lastchangets) values(1006,'Thin Pizza Crust Small',6.50,80,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values (1001,'Large - Hand Tossed - Alfardo Sause ',10.25,100,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1002,'Medium - Hand Tossed - Alfardo Sause ',9.25,150,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1003,'Small - Hand Tossed - Alfardo Sause ',7.50,130,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values (1004,'Large - Hand Tossed - BBQ Sause',10.25,100,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1005,'Medium - Hand Tossed - BBQ Sause ',9.25,150,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1006,'Small - Hand Tossed - BBQ Sause',7.50,130,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values (1007,'Large - Hand Tossed - Tomato Sause',10.25,100,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1008,'Medium - Hand Tossed - Tomato Sause',9.25,150,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1009,'Small - Hand Tossed - Tomato Sause',7.50,130,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values (1010,'Large - Hand Tossed - Garlic White Sause  ',10.25,100,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1011,'Medium - Hand Tossed - Garlic White  Sause ',9.25,150,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1012,'Small - Hand Tossed- Garlic White  Sause ',7.50,130,CURRENT_TIMESTAMP);
+
+insert into pizza(code,description,price,inventory,lastchangets) values (1013,'Large - Thin Crust - Alfardo Sause ',10.25,100,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1014,'Medium - Thin Crust - Alfardo Sause ',9.25,150,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1015,'Small -  Thin Crust - Alfardo Sause ',7.50,130,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values (1016,'Large -  Thin Crust  - BBQ Sause',10.25,100,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1017,'Medium -  Thin Crust  - BBQ Sause ',9.25,150,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1018,'Small -  Thin Crust - BBQ Sause',7.50,130,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values (1019,'Large -  Thin Crust -Tomato Sause',10.25,100,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1020,'Medium -  Thin Crust - Tomato Sause',9.25,150,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1021,'Small -  Thin Crust -Tomato Sause',7.50,130,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values (1022,'Large -  Thin Crust - Garlic White Sause  ',10.25,100,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1023,'Medium -  Thin Crust -Garlic White  Sause ',9.25,150,CURRENT_TIMESTAMP);
+insert into pizza(code,description,price,inventory,lastchangets) values(1024,'Small -  Thin Crust - Garlic White  Sause ',7.50,130,CURRENT_TIMESTAMP);
 
 CREATE TABLE Toppings (
     code INT8 PRIMARY KEY,
@@ -42,10 +61,13 @@ CREATE TABLE deals (
     dealenddate DATE,
     lastchangets TIMESTAMP
 );
-insert into deals (code,description, percent,dealstartdate,dealenddate,lastchangets) values(3001,'50% off deals on total',50.00,'2019-01-01','2019-12-31',CURRENT_TIMESTAMP);
+insert into deals (code,description, percent,dealstartdate,dealenddate,lastchangets) values(3001,'`0% off deals on total',10.00,'2019-01-01','2019-12-31',CURRENT_TIMESTAMP);
 insert into deals (code,description, percent,dealstartdate,dealenddate,lastchangets) values(3002,'20% off deals on total',20.00,'2019-01-01','2019-12-31',CURRENT_TIMESTAMP);
 insert into deals (code,description, percent,dealstartdate,dealenddate,lastchangets) values(3003,'30% off deals on total',30.00,'2019-01-01','2019-12-31',CURRENT_TIMESTAMP);
 insert into deals (code,description, percent,dealstartdate,dealenddate,lastchangets) values(3004,'40% off deals on total',40.00,'2019-01-01','2019-12-31',CURRENT_TIMESTAMP);
+insert into deals (code,description, percent,dealstartdate,dealenddate,lastchangets) values(3005,'50% off deals on total',50.00,'2019-01-01','2019-12-31',CURRENT_TIMESTAMP);
+insert into deals (code,description, percent,dealstartdate,dealenddate,lastchangets) values(3006,'60% off deals on total',60.00,'2019-01-01','2019-12-31',CURRENT_TIMESTAMP);
+insert into deals (code,description, percent,dealstartdate,dealenddate,lastchangets) values(3007,'70% off deals on total',70.00,'2019-01-01','2019-12-31',CURRENT_TIMESTAMP);
 
 CREATE TABLE orders (
     ordernumber INT8 PRIMARY KEY,

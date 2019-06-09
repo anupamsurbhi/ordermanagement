@@ -15,5 +15,7 @@ public class ResponseToppings {
 	private Integer toppingCode;
 	private String description; 
 	private Double toppingPrice;
+	private String toppingErrorCode;
+	private String toppingErrorDesc;
 	
 }

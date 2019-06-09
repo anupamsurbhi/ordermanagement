@@ -2,6 +2,7 @@ package org.fastspring.pizza.app.ordermanagement.DAO;
 
 import java.util.List;
 
+import org.fastspring.pizza.app.ordermanagement.constants.AppConstants;
 import org.fastspring.pizza.app.ordermanagement.model.Toppings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -19,6 +20,9 @@ public class ToppingsDAO {
 	List<Toppings> toppings;
 
 	@Autowired
+	AppConstants appConstants;
+
+	@Autowired
 	Toppings topping;
 
 	@Autowired
@@ -33,11 +37,11 @@ public class ToppingsDAO {
 
 		try {
 			toppings = toppingDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Toppings.class));
-			System.out.println(" pass");
+			toppings.get(0).setStatus(appConstants.pass);
 
 		} catch (Exception e) {
-			System.out.println(" Failed");
-
+			toppings.get(0).setStatus(appConstants.fail);
+			toppings.get(0).setMessage(e.getMessage());
 		}
 
 		return toppings;
@@ -51,32 +55,30 @@ public class ToppingsDAO {
 		try {
 			toppings = toppingDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Toppings.class));
 			topping = toppings.get(0);
-			System.out.println(" pass");
+			topping.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
-			System.out.println(" Failed");
-
+			topping.setStatus(appConstants.fail);
+			topping.setMessage(e.getMessage());
 		}
 
 		return topping;
 	}
-	
-	public Toppings addToppingToPizza(Integer toppingId) {
-		String query = env.getProperty("GET_TOPPINGS_ID");
+
+	public Toppings updateToppingInv(Integer toppingId, Integer inv) {
 		String updateQuery = env.getProperty("UPDATE_TOPPING_INV");
 
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("code", toppingId);
+		paramMap.addValue("inv", inv);
 
 		try {
-			toppings = toppingDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Toppings.class));
-			topping = toppings.get(0);
 			toppingDAO.update(updateQuery, paramMap);
-			System.out.println(" pass");
+			topping.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
-			System.out.println(" Failed");
-
+			topping.setStatus(appConstants.fail);
+			topping.setMessage(e.getMessage());
 		}
 
 		return topping;
@@ -88,18 +90,18 @@ public class ToppingsDAO {
 
 		try {
 			topping = toppingDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Toppings.class)).get(0);
-			System.out.println(" pass");
+			topping.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
-			System.out.println(" Failed");
-
+			topping.setStatus(appConstants.fail);
+			topping.setMessage(e.getMessage());
 		}
 
 		return topping.getCode();
 	}
 
 	public Toppings addTopping(Toppings inTopping) {
-		String query = env.getProperty("ADD_PIZZA");
+		String query = env.getProperty("ADD_TOPPINGS");
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("code", inTopping.getCode());
 		paramMap.addValue("desc", inTopping.getDescription());
@@ -112,7 +114,25 @@ public class ToppingsDAO {
 			System.out.println(" pass");
 
 		} catch (Exception e) {
-			System.out.println(" Failed" + e);
+			inTopping.setStatus(appConstants.fail);
+			inTopping.setMessage(e.getMessage());
+		}
+
+		return inTopping;
+	}
+
+	public Toppings updateTopping(Toppings inTopping) {
+		String query = env.getProperty("UPDATE_TOPPING_INV");
+		MapSqlParameterSource paramMap = new MapSqlParameterSource();
+		paramMap.addValue("code", inTopping.getCode());
+		paramMap.addValue("inv", inTopping.getInventory());
+
+		try {
+			toppingDAO.update(query, paramMap);
+			inTopping.setStatus(appConstants.pass);
+		} catch (Exception e) {
+			inTopping.setStatus(appConstants.fail);
+			inTopping.setMessage(e.getMessage());
 
 		}
 

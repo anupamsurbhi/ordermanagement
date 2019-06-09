@@ -6,7 +6,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Data;
 
@@ -15,6 +17,7 @@ import lombok.Data;
 @Scope("prototype")
 @JsonRootName(value = "PizzaRecipt")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(Include.NON_NULL)
 public class OrderResponse {
 	private String firstName;
 	private String lastName;
@@ -24,5 +27,7 @@ public class OrderResponse {
 	private String dealDescription;
 	private Double discountAmount;
 	private Double finalBillAmount;
+	private String status;
+	private String message;
 
 }

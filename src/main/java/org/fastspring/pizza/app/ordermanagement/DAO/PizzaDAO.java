@@ -2,6 +2,7 @@ package org.fastspring.pizza.app.ordermanagement.DAO;
 
 import java.util.List;
 
+import org.fastspring.pizza.app.ordermanagement.constants.AppConstants;
 import org.fastspring.pizza.app.ordermanagement.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -14,10 +15,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 @PropertySource("${fastspring.sql.path}")
 public class PizzaDAO {
-	
+
 	@Autowired
 	List<Pizza> pizzas;
-	
+
+	@Autowired
+	AppConstants appConstants;
+
 	@Autowired
 	Pizza pizza;
 
@@ -26,86 +30,79 @@ public class PizzaDAO {
 
 	@Autowired
 	private Environment env;
-	
-	public List<Pizza> getPizza()
-	{
+
+	public List<Pizza> getPizza() {
 		String query = env.getProperty("GET_PIZZA");
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
-		
-		
+
 		try {
 			pizzas = pizzaDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Pizza.class));
-			System.out.println(" pass");
+			pizzas.get(0).setStatus(appConstants.pass);
 
 		} catch (Exception e) {
-			System.out.println(" Failed");
-
+			pizzas.get(0).setStatus(appConstants.fail);
+			pizzas.get(0).setMessage(e.getMessage());
 		}
 
 		return pizzas;
 	}
-	
-	
-	public Pizza getPizzaPrice(Integer pizzaCode)
-	{
+
+	public Pizza getPizzaPrice(Integer pizzaCode) {
 		String query = env.getProperty("GET_PIZZA_ID");
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("code", pizzaCode);
 		try {
-			pizzas =  pizzaDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Pizza.class));
+			pizzas = pizzaDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Pizza.class));
 			pizza = pizzas.get(0);
-			System.out.println(" pass");
+			pizza.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
-			System.out.println(" Failed");
+			pizza.setStatus(appConstants.fail);
+			pizza.setMessage(e.getMessage());
 
 		}
 
 		return pizza;
 	}
-	
-	public Pizza preparePizza(Integer pizzaCode)
-	{
-		String query = env.getProperty("GET_PIZZA_ID");
+
+	public Pizza updatePizzaInv(Pizza inPizza) {
 		String updateQuery = env.getProperty("UPDATE_PIZZA_INV");
 
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
-		paramMap.addValue("code", pizzaCode);
+		paramMap.addValue("code", inPizza.getCode());
+		paramMap.addValue("inv", inPizza.getInventory());
+
 		try {
-			pizzas =  pizzaDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Pizza.class));
-			pizza = pizzas.get(0);
 			pizzaDAO.update(updateQuery, paramMap);
-			System.out.println(" pass");
+			inPizza.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
-			System.out.println(" Failed");
+			inPizza.setStatus(appConstants.fail);
+			inPizza.setMessage(e.getMessage());
 
 		}
 
-		return pizza;
+		return inPizza;
 	}
-	
-	
-	public Integer maxPizzaCode()
-	{
+
+	public Integer maxPizzaCode() {
 		String query = env.getProperty("GET_PIZZA_MAX");
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
-		
-		
+
 		try {
 			pizza = pizzaDAO.query(query, paramMap, BeanPropertyRowMapper.newInstance(Pizza.class)).get(0);
-			System.out.println(" pass");
+			pizza.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
-			System.out.println(" Failed");
+			pizza.setStatus(appConstants.fail);
+			pizza.setMessage(e.getMessage());
 
 		}
 
 		return pizza.getCode();
 	}
-	
-	public Pizza addPizza(Pizza inPizza)
-	{
+
+	public Pizza addPizza(Pizza inPizza) {
 		String query = env.getProperty("ADD_PIZZA");
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("code", inPizza.getCode());
@@ -113,13 +110,13 @@ public class PizzaDAO {
 		paramMap.addValue("price", inPizza.getPrice());
 		paramMap.addValue("inv", inPizza.getInventory());
 
-
 		try {
 			pizzaDAO.update(query, paramMap);
-			System.out.println(" pass");
+			inPizza.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
-			System.out.println(" Failed" + e);
+			inPizza.setStatus(appConstants.fail);
+			inPizza.setMessage(e.getMessage());
 
 		}
 

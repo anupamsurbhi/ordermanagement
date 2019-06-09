@@ -21,5 +21,7 @@ public class ResponsePizza {
 	private Double pizzaCost;
 	private Double toppingCostForPizza;
 	private Double TotalPizzaCost;
+	private String pizzaErrorCode;
+	private String pizzaErrorDesc;
 
 }

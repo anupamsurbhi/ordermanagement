@@ -7,8 +7,9 @@ import java.sql.Timestamp;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Data;
 
@@ -17,7 +18,7 @@ import lombok.Data;
 @Component
 @Scope("prototype")
 @JsonRootName(value = "orders")
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(Include.NON_NULL)
 public class Orders {
 
 	private Integer orderNumber ;
@@ -30,6 +31,8 @@ public class Orders {
 	private Date orderDate;
 	private Time orderTime;
 	private Timestamp lastChangeTS;
+	private String status;
+	private String message;
 
 
 	

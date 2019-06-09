@@ -3,11 +3,9 @@ package org.fastspring.pizza.app.ordermanagement.service;
 import java.util.List;
 
 import org.fastspring.pizza.app.ordermanagement.DAO.DealsDAO;
-import org.fastspring.pizza.app.ordermanagement.DAO.OrdersDAO;
 import org.fastspring.pizza.app.ordermanagement.DAO.PizzaDAO;
 import org.fastspring.pizza.app.ordermanagement.DAO.ToppingsDAO;
 import org.fastspring.pizza.app.ordermanagement.model.Deals;
-import org.fastspring.pizza.app.ordermanagement.model.Orders;
 import org.fastspring.pizza.app.ordermanagement.model.Pizza;
 import org.fastspring.pizza.app.ordermanagement.model.Toppings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +32,10 @@ public class ManageService {
 		return toppingsDAO.addTopping(inTopping);
 	}
 
+	public Toppings updateToppingInv(Toppings inTopping) {
+		return toppingsDAO.updateTopping(inTopping);
+	}
+
 	public List<Deals> getDeals() {
 		return dealsDAO.getDeals();
 	}
@@ -46,4 +48,15 @@ public class ManageService {
 		inPizza.setCode(pizzaDAO.maxPizzaCode() + 1);
 		return pizzaDAO.addPizza(inPizza);
 	}
+	
+	public Pizza updatePizzaInv(Pizza inPizza) {
+		return pizzaDAO.updatePizzaInv(inPizza);
+	}
+
+	public Deals addDeal(Deals inDeal) {
+		
+		inDeal.setCode(dealsDAO.getDealMax() + 1);
+		return dealsDAO.addDeal(inDeal);
+	}
+
 }
