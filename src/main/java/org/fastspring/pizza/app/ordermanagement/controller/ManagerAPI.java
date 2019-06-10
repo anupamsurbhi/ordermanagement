@@ -37,11 +37,8 @@ public class ManagerAPI {
 	@Autowired
 	ManageService manageService;
 
-
-
 	@ApiOperation(value = "add pizza")
-	@RequestMapping(value = "/addpizza", method = RequestMethod.PUT, consumes = {
-			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/addpizza", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public Pizza addPizza(@RequestParam String description, @RequestParam Double price,
 			@RequestParam Integer inventory) {
 
@@ -51,12 +48,10 @@ public class ManagerAPI {
 
 		return manageService.addPizza(pizza);
 	}
-	
+
 	@ApiOperation(value = "update pizza inv")
-	@RequestMapping(value = "/updatepizzainv", method = RequestMethod.POST, consumes = {
-			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public Pizza updatePizzaInv(@RequestParam Integer pizzacode,
-			@RequestParam Integer inventory) {
+	@RequestMapping(value = "/updatepizzainv", method = RequestMethod.POST,  produces = { MediaType.APPLICATION_JSON_VALUE })
+	public Pizza updatePizzaInv(@RequestParam Integer pizzacode, @RequestParam Integer inventory) {
 
 		pizza.setInventory(inventory);
 		pizza.setCode(pizzacode);
@@ -64,11 +59,8 @@ public class ManagerAPI {
 		return manageService.updatePizzaInv(pizza);
 	}
 
-
-
 	@ApiOperation(value = "add toppings")
-	@RequestMapping(value = "/addtoppings", method = RequestMethod.PUT, consumes = {
-			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/addtoppings", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public Toppings addToppings(@RequestParam String description, @RequestParam Double price,
 			@RequestParam Integer inventory) {
 
@@ -80,29 +72,27 @@ public class ManagerAPI {
 	}
 
 	@ApiOperation(value = "update toppings inventory")
-	@RequestMapping(value = "/updatetoppinginv", method = RequestMethod.POST, consumes = {
-			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public Toppings updateToppingInv(@RequestParam Integer ToppingCode,
-			@RequestParam Integer inventory) {
+	@RequestMapping(value = "/updatetoppinginv", method = RequestMethod.POST, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Toppings updateToppingInv(@RequestParam Integer ToppingCode, @RequestParam Integer inventory) {
 
 		topping.setInventory(inventory);
 		topping.setCode(ToppingCode);
 
 		return manageService.updateToppingInv(topping);
 	}
-	
+
 	@ApiOperation(value = "add deal")
-	@RequestMapping(value = "/adddeal", method = RequestMethod.PUT, consumes = {
-			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/adddeal", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public Deals addDeal(@RequestParam String description, @RequestParam Double DealPercent,
-			 @RequestParam String StartDate , @RequestParam String EndDate) {
+			@RequestParam String StartDate, @RequestParam String EndDate) {
 
 		deal.setDescription(description);
 		deal.setDealstartdate(Date.valueOf(StartDate));
 		deal.setDealenddate(Date.valueOf(EndDate));
 
 		deal.setPercent(DealPercent);
-		
+
 		return manageService.addDeal(deal);
 	}
 

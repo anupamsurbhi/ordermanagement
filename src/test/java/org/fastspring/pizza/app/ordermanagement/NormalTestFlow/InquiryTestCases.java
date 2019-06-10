@@ -14,9 +14,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CommonTestCases.class)
-public class CommonTestCases {
+@WebMvcTest(InquiryTestCases.class)
+public class InquiryTestCases {
 
+	
+// Inquiry Test cases
+	
    @Test
    public void testGetAllDeals() throws URISyntaxException
    {

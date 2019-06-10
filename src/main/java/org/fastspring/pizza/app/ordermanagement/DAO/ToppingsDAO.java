@@ -111,7 +111,7 @@ public class ToppingsDAO {
 
 		try {
 			toppingDAO.update(query, paramMap);
-			System.out.println(" pass");
+			inTopping.setStatus(appConstants.pass);
 
 		} catch (Exception e) {
 			inTopping.setStatus(appConstants.fail);

@@ -35,8 +35,7 @@ public class OrderAPI {
 	}
 
 	@ApiOperation(value = "place orders")
-	@RequestMapping(value = "/placeorder", method = RequestMethod.POST, consumes = {
-			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/placeorder", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public OrderResponse placeOrder(@RequestBody OrderRequest order) {
 
 		return ordersService.placeOrder(order);
