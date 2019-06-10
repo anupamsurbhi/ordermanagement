@@ -76,11 +76,13 @@ public class OrdersService {
 		for (RequestPizza pizza : orderreq.getPizza()) {
 			ResponsePizza myPizza = pizzaPriceCalc(pizza);
 			if (myPizza.getPizzaErrorCode() == "SUCCESS") {
+				if (pizza.getTopping() != null) {
 				pizzaTopping = toppingPriceCalc(pizza.getTopping());
 				toppingsSum = pizzaTopping.stream().map(x -> x.getToppingPrice()).reduce((double) 0, Double::sum);
 				myPizza.setTopping(pizzaTopping);
+				}
 				myPizza.setToppingCostForPizza(toppingsSum);
-				myPizza.setTotalPizzaCost(toppingsSum + myPizza.getPizzaCost());
+				myPizza.setTotalPizzaCost(toppingsSum + myPizza.getPizzaCost()); 
 				totalBefore += myPizza.getTotalPizzaCost();
 			}
 			PizzaOut.add(myPizza);
@@ -123,7 +125,7 @@ public class OrdersService {
 					"SUCCESS", "SUCCESS");
 			pizza.setInventory(pizza.getInventory()-1);
 			pizzaDAO.updatePizzaInv(pizza);
-		}
+		} 
 		return myPizza;
 	}
 
