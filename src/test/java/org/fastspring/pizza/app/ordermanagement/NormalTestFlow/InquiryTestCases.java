@@ -5,7 +5,9 @@ package org.fastspring.pizza.app.ordermanagement.NormalTestFlow;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +16,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(InquiryTestCases.class)
+@AutoConfigureMockMvc
+@SpringBootTest 
 public class InquiryTestCases {
 
 	

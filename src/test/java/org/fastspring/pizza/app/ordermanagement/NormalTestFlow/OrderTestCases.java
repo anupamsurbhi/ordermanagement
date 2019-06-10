@@ -1,5 +1,6 @@
 package org.fastspring.pizza.app.ordermanagement.NormalTestFlow;
 
+import org.fastspring.pizza.app.ordermanagement.OrdermanagementApplication;
 import org.fastspring.pizza.app.ordermanagement.model.Deals;
 import org.fastspring.pizza.app.ordermanagement.model.Pizza;
 import org.fastspring.pizza.app.ordermanagement.model.Toppings;
@@ -10,7 +11,9 @@ import org.fastspring.pizza.app.ordermanagement.response.OrderResponse;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -28,7 +31,8 @@ import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(OrderTestCases.class)
+@AutoConfigureMockMvc
+@SpringBootTest(classes = OrdermanagementApplication.class)
 public class OrderTestCases {
 
 	// Inquiry Test cases

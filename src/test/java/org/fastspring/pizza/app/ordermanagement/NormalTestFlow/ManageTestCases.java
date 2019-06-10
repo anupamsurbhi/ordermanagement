@@ -6,7 +6,9 @@ import org.fastspring.pizza.app.ordermanagement.model.Toppings;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ManageTestCases.class)
+@SpringBootTest 
 public class ManageTestCases {
 
 	// Inquiry Test cases

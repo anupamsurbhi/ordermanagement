@@ -14,10 +14,17 @@ https://www.getpostman.com/collections/df64066eb78853866673
 these are the commands needs to run 
 
 $ sudo gradle build --stacktrace
-
 $ sudo gradle bootRun
+
+Or go to the project folder and run these command
+$ ./gradlew
+$ ./gradlew bootRun
 
 The above command will start the project in machine on port 8181 
 
 #### TroubleShooting - 
-This project requires Lombok , Please download lombok either for eclipse or intellj as per lombok website
+1. This project requires Lombok , Please download lombok either for eclipse or intellj as per lombok website
+
+2. gradle build failing test cases - In this scenerio 
+Execute the server on one terminal using 'gradle bootRun' on one terminal and run the test cases on another terminal using 'gradle test'
+
